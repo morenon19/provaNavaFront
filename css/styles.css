@@ -1,0 +1,63 @@
+.card{
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn-table{
+    height: 35px;
+    font-size: 12px;
+}
+
+.tb-cli-cnpj{
+    width: 13%
+}
+
+.tb-cli-name{
+    width: 30%
+}
+
+.tb-cli-reg{
+    width: 10%
+}
+
+.tb-cli-email{
+    width: 17%
+}
+
+.tb-cli-phone{
+    width: 15%
+}
+
+.tb-cli-options{
+    width: 15%
+}
+
+.btnActive{
+    width: 73px;
+    background-color: green;
+    border: 0px
+}
+
+.btnActive:hover{
+    width: 73px;
+    background-color: rgb(10, 84, 34);
+    border: 0px
+}
+
+.mergeControl{
+    margin-top: 100px;
+}
+
+.selectEquip{
+    height: 300px;
+}
+
+.ctrlButtons{
+    font-size: 12px;
+}
+
+.invalid-message p{
+    font-size: 13px;
+    color: red
+}

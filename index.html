@@ -1,0 +1,51 @@
+<html ng-app='provaNava'>
+<head>
+  <meta charset="utf-8">
+  <title>Prova Nava</title>
+  <!-- AngularJS -->
+  <script src="lib/angular.js"></script>
+  <!-- Angular Route -->
+  <script src="lib/angular-route.js"></script>
+
+  <!-- Modules -->
+  <script src="js/app.js"></script>
+  <!-- Route Config -->
+  <script src="js/config/routeConfig.js"></script>
+  <!-- Controllers -->
+  <script src="js/controllers/clientController.js"></script>
+  <script src="js/controllers/equipmentController.js"></script>
+  <script src="js/controllers/clientEquipmentController.js"></script>
+  <!-- Services -->
+  <script src="js/services/clientAPIService.js"></script>
+  <script src="js/services/equipmentAPIService.js"></script>
+  <!-- ConfigValue -->
+  <script src="js/value/configValue.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
+  <!-- CSS -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-light justify-content-center">
+    <ul class="nav">
+      <li class="nav-item"> <a class="nav-link active" href="#!/clients">Clientes</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="#!/equipments">Equipamentos</a> </li>
+      <li class="nav-item"> <a class="nav-link" href="#!/cliequip">Clientes / Equipamentos</a> </li>
+    </ul>
+  </nav>
+
+  <!-- Angular components exibition area -->
+  <div ng-view></div>   
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap-4.0.0.js"></script>
+</body>
+
+</html>

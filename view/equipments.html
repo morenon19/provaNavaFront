@@ -1,0 +1,118 @@
+<!-- Equipment Card -->
+<div class="card">
+    <div class="card-header d-flex flex-row">
+
+        <div class="col-6 justify-content-start">
+            <h3>Equipamentos</h3>
+        </div>
+    </div>
+    <!-- Equipment Table -->
+    <div class="card-body">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Serial</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">IP</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Desabilitado</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="equipment in equipments">
+                    <td class="tb-equi-serial">{{equipment.serial}}</td>
+                    <td class="tb-equi-name">{{equipment.name}}</td>
+                    <td class="tb-equi-ip">{{equipment.ip}}</td>
+                    <td class="tb-equi-registry">{{equipment.registered}}</td>
+                    <td class="tb-equi-disabled">{{equipment.disabled}}</td>
+                    <td class="tb-equi-email">{{equipment.email}}</td>
+                    <td class="tb-equi-phone">{{equipment.phone}}</td>
+                    <td class="tb-equi-options">
+                        <button ng-if="equipment.active" ng-click="changeStatus(equipment)" type="button"
+                            class="btn btn-danger btn-table">
+                            Desativar
+                        </button>
+                        <button ng-if="!equipment.active" ng-click="changeStatus(equipment)" type="button"
+                            class=" btnActive btn btn-danger btn-table">
+                            Ativar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <button class="btn btn-primary float-none mr-5" type="button" data-toggle="modal"
+            data-target="#cadEquip">Cadastrar Equipamento</button>
+    </div>
+</div>
+
+<!-- Equipment Modal -->
+<div class="modal fade" id="cadEquip" tabindex="-1" role="dialog" aria-labelledby="cadEquipLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadEquipLabel">Novo Equipamento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                        aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form name="insertForm" ng-submit="cadEquip(equip)">
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="equipSerial">Serial</label>
+                                <input type="text" ng-model="equip.serial" class="form-control" id="equipSerial"
+                                    name="serial" ng-required="true">
+                            </div>
+                            <div class="col-9">
+                                <label for="equipName">Nome</label>
+                                <input type="text" ng-model="equip.name" class="form-control" id="equipName" name="name"
+                                    ng-required="true">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="equipReg">Data de registro</label>
+                                <input type="text" ng-model="equip.registered" class="form-control" id="equipReg"
+                                    placeholder="yyyy-MM-dd" name="registered" ng-required="true"
+                                    ng-pattern="/^\d{4}-\d{2}-\d{2}$/">
+                                <div ng-show="insertForm.registered.$invalid && insertForm.registered.$dirty"
+                                    class="invalid-message">
+                                    <p>Data incorreta: Padrão yyyy/mm/dd</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="equipIp">IP</label>
+                                <input type="text" ng-model="equip.ip" class="form-control" id="equipIp" name="ip"
+                                    ng-required="true">
+                            </div>
+                        </div>
+                        <label for="equipEmail">Email</label>
+                        <input type="email" ng-model="equip.email" class="form-control" id="equipEmail" name="email"
+                            ng-required="true">
+                        <div ng-show="insertForm.email.$invalid && insertForm.email.$dirty" class="invalid-message">
+                            <p>email incorreto</p>
+                        </div>
+                        <label for="equipPhone">Telefone</label>
+                        <input type="text" ng-model="equip.phone" class="form-control" id="equipPhone"
+                            placeholder="xx 00000-0000" name="phone" ng-required="true"
+                            ng-pattern="/^\d{2} \d{4,5}-\d{4}$/">
+                        <div ng-show="insertForm.phone.$invalid && insertForm.phone.$dirty" class="invalid-message">
+                            <p>telefone incorreto: Padrão xx 00000-0000</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" ng-disabled="insertForm.$invalid" ng-click="closeModal()"
+                                class="btn btn-primary">Cadastrar
+                                Equipamento</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

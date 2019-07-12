@@ -1,0 +1,62 @@
+<!-- ClientEquipment Card -->
+<div class="card">
+    <div class="card-header d-flex flex-row">
+
+        <div class="col-6 justify-content-start">
+            <h3>Vincular Equipamentos</h3>
+        </div>
+
+    </div>
+    <div class="card-body">
+
+        <div class="row mt-5">
+            <!-- Select Client -->
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Selecione o cliente:</label>
+                    <select class="form-control" ng-change="getClientEquips(selClient.cnpj)" ng-model="selClient"
+                        ng-options="client.name for client in clients">
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Client Equipments List -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Equipamentos Vinculados</label>
+                    <select multiple class="form-control selectEquip" ng-model="selClientEquips"
+                        ng-options="equip.name + ' -  status: ' + test(equip.active) for equip in clientEquips" id="exampleFormControlSelect2">
+                    </select>
+                </div>
+            </div>
+            <!-- Control buttons -->
+            <div class="col-1">
+                <div class="d-flex flex-row justify-content-center mergeControl">
+                    <button class="btn btn-primary" ng-disabled="!selClientEquips || selClientEquips.length == 0"
+                        ng-click="removeEquips(selClientEquips)" type="button">>></button>
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <button class="btn btn-primary mt-2" ng-disabled="!selEquips || selEquips.length == 0"
+                        ng-click="addEquips(selEquips)" type="button">
+                        <<</button> </div> <div class="row mt-4">
+                            <button class="btn btn-block btn-success ctrlButtons mt-3"
+                                ng-click="attEquips(selClient.cnpj)" type="button">Salvar Alterações</button>
+                </div>
+                <div class="row">
+                    <button class="btn btn-block btn-danger ctrlButtons mt-3" ng-click="cancel()"
+                        type="button">Cancelar</button>
+                </div>
+            </div>
+            <!-- Equipments List -->
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect2">Equipamentos não vínculados</label>
+                    <select multiple class="form-control selectEquip" ng-model="selEquips"
+                        ng-options="equip.name + ' -  status: ' + test(equip.active) for equip in equips" id="exampleFormControlSelect2">
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

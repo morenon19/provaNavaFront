@@ -1,0 +1,96 @@
+<!-- Client Card -->
+<div class="card">
+    <div class="card-header d-flex flex-row">
+
+        <div class="col-6 justify-content-start">
+            <h3>Clientes</h3>
+        </div>
+    </div>
+    <!-- Client Table -->
+    <div class="card-body">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">CNPJ</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="client in clients">
+                    <td class="tb-cli-cnpj">{{client.cnpj}}</td>
+                    <td class="tb-cli-name">{{client.name}}</td>
+                    <td class="tb-cli-reg">{{client.registred}}</td>
+                    <td class="tb-cli-email">{{client.email}}</td>
+                    <td class="tb-cli-phone">{{client.phone}}</td>
+                    <td class="tb-cli-options">
+                        <button type="button" ng-click="deleteClient(client.cnpj)" class="btn btn-danger btn-table">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <button class="btn btn-primary float-none mr-5" type="button" data-toggle="modal"
+            data-target="#cadClient">Cadastrar Cliente</button>
+    </div>
+</div>
+
+<!-- Client Modal -->
+<div class="modal fade" id="cadClient" tabindex="-1" role="dialog" aria-labelledby="cadClientLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cadClientLabel">Novo Usuário</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                        aria-hidden="true">&times;</span> </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form name="insertForm" ng-submit="cadCliente(client)">
+                        <label for="cliCnpj">CNPJ</label>
+                        <input type="text" ng-model="client.cnpj" class="form-control" id="cliCnpj" name="cnpj"
+                            placeholder="somente números" ng-required="true" ng-pattern="/^\d{15}$/" />
+                        <div ng-show="insertForm.cnpj.$invalid && insertForm.cnpj.$dirty" class="invalid-message">
+                            <p>CNPJ incorreto</p>
+                        </div>
+
+                        <label for="cliName">Nome</label>
+                        <input type="text" ng-model="client.name" class="form-control" id="cliName" name="name"
+                            ng-required="true">
+                        <label for="cliRegistred">Data de registro</label>
+                        <input type="text" ng-model="client.registred" class="form-control" id="cliRegistred"
+                            name="registred" placeholder="yyyy-MM-dd" ng-required="true"
+                            ng-pattern="/^\d{4}-\d{2}-\d{2}$/" />
+                        <div ng-show="insertForm.registred.$invalid && insertForm.registred.$dirty"
+                            class="invalid-message">
+                            <p>Data incorreta: Padrão yyyy/mm/dd</p>
+                        </div>
+                        <label for="cliMail">E-mail</label>
+                        <input type="email" ng-model="client.email" class="form-control" id="cliMail" name="email"
+                            ng-required="true" />
+                        <div ng-show="insertForm.email.$invalid && insertForm.email.$dirty" class="invalid-message">
+                            <p>email incorreto</p>
+                        </div>
+                        <label for="cliPhone">Telefone</label>
+                        <input type="text" ng-model="client.phone" class="form-control" id="cliPhone" name="phone"
+                            placeholder="xx 00000-0000" ng-required="true" ng-pattern="/^\d{2} \d{4,5}-\d{4}$/" />
+                        <div ng-show="insertForm.phone.$invalid && insertForm.phone.$dirty" class="invalid-message">
+                            <p>telefone incorreto: Padrão xx 00000-0000</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-click="resetForm()" class="btn btn-secondary"
+                                data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" ng-click="closeModal()" ng-disabled="insertForm.$invalid" id="submitClient">Cadastrar
+                                Cliente</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
